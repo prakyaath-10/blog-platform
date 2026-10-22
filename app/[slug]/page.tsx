@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import { getPostBySlug } from '@/lib/posts';
+export const dynamic = 'force-dynamic';
 
 interface PageProps {
   params: Promise<{
