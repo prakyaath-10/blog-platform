@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import { getPostBySlug } from '@/lib/posts';
 import { supabase } from '@/lib/supabase';
+export const dynamic = 'force-dynamic';
 export async function generateStaticParams() {
   // Query Supabase directly or call a helper from @/lib/posts
   const { data: posts } = await supabase.from('posts').select('slug');
