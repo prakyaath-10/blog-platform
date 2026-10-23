@@ -3,7 +3,17 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import { getPostBySlug } from '@/lib/posts';
-export const dynamic = 'force-dynamic';
+import { supabase } from '@/lib/supabase';
+export async function generateStaticParams() {
+  // Query Supabase directly or call a helper from @/lib/posts
+  const { data: posts } = await supabase.from('posts').select('slug');
+
+  if (!posts) return [];
+
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 interface PageProps {
   params: Promise<{
